@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('cate', [CategoryController::class, 'index']);
 Route::get('products', [ProductController::class, 'index']);
 Route::get('query', [OrderController::class, 'index']);
