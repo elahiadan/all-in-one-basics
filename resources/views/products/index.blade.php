@@ -33,7 +33,7 @@
                 <tr>
                     <td scope="row">{{$loop->iteration}}</td>
                     <td class="myButton" data-peter="hello" value="world" style="cursor: pointer">{{$item->name}}</td>
-                    <td onclick="name(this)" data-peter="hello">{{$item->category->name ?? ""}}</td>
+                    <td onclick="targetCompleteElementTD(this)" data-peter="hello">{{$item->category->name ?? ""}}</td>
                     <td>{{$item->price}}</td>
                     <td>{{$item->user->name}}</td>
                     <td><a href="javasript:;" class="btn btn-success" onclick="ajaxCall()">View</a></td>
@@ -43,6 +43,35 @@
 
             </tbody>
         </table>
+
+        <form method=" post" action="">
+            <div class="container">
+                <div class="row">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" name="name">
+                    </div>
+                </div>
+                <div class="add-more">
+                    <div class="row">
+                        <div class="mb-3 col-3">
+                            <label for="weight1" class="form-label">Weight</label>
+                            <input type="text" class="form-control" name="weight[]">
+                        </div>
+                        <div class="mb-3 col-3">
+                            <label for="price1" class="form-label">Price</label>
+                            <input type="text" class="form-control" name="price[]">
+                        </div>
+                        <div class="mb-3 col-3 mt-4">
+                            <button type="button" class="btn btn-success add_button">+</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
     </div>
 
     <script>
@@ -66,7 +95,7 @@
             });
         }
 
-        function name(element) {
+        function targetCompleteElementTD(element) {
 
             // Log the element
             console.log(element);
@@ -96,6 +125,33 @@
             console.log(this, this.textContent);
 
             $(this).css('background-color', 'lightblue');
+        });
+
+
+
+        $(document).ready(function() {
+            let html = `
+                <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="weight" class="form-label">Weight</label>
+                        <input type="text" class="form-control" name="weight[]">
+                    </div>
+                    <div class="mb-3 col-3">
+                        <label for="price" class="form-label">Price</label>
+                        <input type="text" class="form-control" name="price[]">
+                    </div>
+                    <div class="mb-3 col-3 mt-4">
+                        <button type="button" class="btn btn-danger remove_button">-</button>
+                    </div>
+                </div>`;
+
+            $(".add_button").click(function() {
+                $(".add-more").append(html);
+            });
+
+            $(".add-more").on("click", ".remove_button", function() {
+                $(this).closest(".row").remove();
+            });
         });
     </script>
 </body>
