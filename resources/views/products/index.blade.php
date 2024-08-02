@@ -55,11 +55,15 @@
                 <div class="add-more">
                     <div class="row">
                         <div class="mb-3 col-3">
-                            <label for="weight1" class="form-label">Weight</label>
+                            <label for="sno" class="form-label">Sr No.</label>
+                            <input type="text" class="form-control" value="1" name="sno[]">
+                        </div>
+                        <div class="mb-3 col-3">
+                            <label for="weight" class="form-label">Weight</label>
                             <input type="text" class="form-control" name="weight[]">
                         </div>
                         <div class="mb-3 col-3">
-                            <label for="price1" class="form-label">Price</label>
+                            <label for="price" class="form-label">Price</label>
                             <input type="text" class="form-control" name="price[]">
                         </div>
                         <div class="mb-3 col-3 mt-4">
@@ -130,8 +134,15 @@
 
 
         $(document).ready(function() {
-            let html = `
+            let i = 1;
+
+            $(".add_button").click(function() {
+                let html = `
                 <div class="row">
+                    <div class="mb-3 col-3">
+                        <label for="sno" class="form-label">Sr No.</label>
+                        <input type="text" class="form-control" value="${i+1}" name="sno[]">
+                    </div>
                     <div class="mb-3 col-3">
                         <label for="weight" class="form-label">Weight</label>
                         <input type="text" class="form-control" name="weight[]">
@@ -144,13 +155,20 @@
                         <button type="button" class="btn btn-danger remove_button">-</button>
                     </div>
                 </div>`;
-
-            $(".add_button").click(function() {
-                $(".add-more").append(html);
+                if (i < 10) {
+                    $(".add-more").append(html);
+                    i++;
+                } else {
+                    alert("cant add more than 10");
+                }
             });
 
             $(".add-more").on("click", ".remove_button", function() {
                 $(this).closest(".row").remove();
+                i--
+
+                // if we want to use this then we have shift the class ".remove_button" from button to parrent div 
+                // $(this).parent("div").remove();
             });
         });
     </script>
