@@ -18,35 +18,34 @@ class CategoryController extends BaseController
     {
 
 
-          
-            // $mysqlDatabaseName = env('DB_DATABASE');
-            // $mysqlUserName = env('DB_USERNAME');
-            // $mysqlPassword =  env('DB_PASSWORD');
-            // $mysqlHostName = env('DB_HOST');
-    
-            // $mysqlExportPath = 'myback_';
-            // $date = date("Y-m-d-H-i-s");
-            // $command = 'mysqldump --opt -h' . $mysqlHostName . ' -u' . $mysqlUserName . ' -p' . $mysqlPassword . ' ' . $mysqlDatabaseName . ' > ../../' . $mysqlExportPath . $date . '.sql';
-            // exec($command, $worked);
-            // switch ($worked) {
-            //     case 0:
-            //         echo 'Database <b>' . $mysqlDatabaseName . '</b> successfully exported to <b>~/' . $mysqlExportPath . '</b>';
-            //         break;
-            //     case 1:
-            //         echo 'There was a warning during the export';
-            //         break;
-            //     case 2:
-            //         echo 'There was an error during export.';
-            //         break;
-            // }
-    
-    
+
+        // $mysqlDatabaseName = env('DB_DATABASE');
+        // $mysqlUserName = env('DB_USERNAME');
+        // $mysqlPassword =  env('DB_PASSWORD');
+        // $mysqlHostName = env('DB_HOST');
+
+        // $mysqlExportPath = 'myback_';
+        // $date = date("Y-m-d-H-i-s");
+        // $command = 'mysqldump --opt -h' . $mysqlHostName . ' -u' . $mysqlUserName . ' -p' . $mysqlPassword . ' ' . $mysqlDatabaseName . ' > ../../' . $mysqlExportPath . $date . '.sql';
+        // exec($command, $worked);
+        // switch ($worked) {
+        //     case 0:
+        //         echo 'Database <b>' . $mysqlDatabaseName . '</b> successfully exported to <b>~/' . $mysqlExportPath . '</b>';
+        //         break;
+        //     case 1:
+        //         echo 'There was a warning during the export';
+        //         break;
+        //     case 2:
+        //         echo 'There was an error during export.';
+        //         break;
+        // }
+
+
 
         $categories = $this->categories->all();
-        dd($categories);
         return view('categories.index', compact('categories'));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -67,9 +66,10 @@ class CategoryController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(Request $request, Category $category)
     {
-        //
+        $categories = $this->categories->all();
+        dd($categories, $request->q);
     }
 
     /**

@@ -8,9 +8,10 @@ use App\Repositories\Interfaces\ProductRepositoryInterface;
 
 class ProductRepository implements ProductRepositoryInterface
 {
+    
     public function all()
     {
-        $categories = Product::latest()->paginate(10);
+        $categories = Product::with(['user','category'])->latest()->get();
         return $categories;
     }
 }
