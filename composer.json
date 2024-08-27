@@ -31,7 +31,8 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Adan\\Contact\\": "adan/contact/src/"
+            "Adan\\Contact\\": "adan/contact/src/",
+            "Cloudinary\\Upload\\": "cloudinary/upload/src/"
         }
     },
     "scripts": {

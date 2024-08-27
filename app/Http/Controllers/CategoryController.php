@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Cloudinary\Upload\CloudinaryFile;
 use App\Http\Controllers\BaseController;
 use App\Repositories\Interfaces\CategoryRepositoryInterface;
 
@@ -14,8 +15,11 @@ class CategoryController extends BaseController
     {
         $this->categories = $categoryRepository;
     }
-    public function index()
+    public function index(Request $request)
     {
+        // $token = csrf_token();
+        // dd("yes", $token,$request->session()->token());
+        dd("Ss", CloudinaryFile::getFile("asasas"));
 
 
 

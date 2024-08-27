@@ -16,10 +16,12 @@ class OrderController extends Controller
     {
         $d1 = date("Y-m-d H:i:s");
         $d2 = date("Y-m-d H:i:s", strtotime("2024-06-01"));
-        $data = Order::select(Order::USER_ID, DB::RAW('sum(qty) as total_selling_product_quantity'), DB::RAW('sum(price*qty) as total_sell'))
+        $data = Order::select(Order::USER_ID, DB::RAW('sum(qty) as total_selling_product_quantity'), DB::RAW('sum(price*qty) as total_sell'), DB::RAW('count(user_id) as vendors'))
             ->with('users', function ($q) {
                 $q->select('id', 'name', 'email');
             })->whereBetween(Order::CREATED_AT, [$d2, $d1])
+            ->having('total_sell', '>', 200000)
+            ->having('vendors', '>', 10)
             ->groupBy(Order::USER_ID)
             ->orderBy('total_sell', 'desc')
             ->get();

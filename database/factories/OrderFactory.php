@@ -23,7 +23,7 @@ class OrderFactory extends Factory
             'order_no' => fake()->numberBetween(3000, 10000),
             'price' => fake()->numberBetween(1, 10) . '000',
             'qty' => fake()->numberBetween(1, 10),
-            'date' => fake()->dateTimeBetween('2024-06-01', '2024-07-31'),
+            'date' => fake()->dateTimeBetween('2024-07-01', '2024-08-31'),
             'user_id' => User::all()->random()->id,
         ];
     }
